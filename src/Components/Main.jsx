@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { styled } from 'styled-components'
-import { motion,useScroll,useTransform } from 'framer-motion'
+import { motion,useAnimation,useScroll,useTransform } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 
 
@@ -9,14 +10,15 @@ const Container = styled(motion.div)`
 width: 100%;
 height: 100vh;
 background: #000;
-position: relative;
 z-index: 0;
 margin-bottom: 100vh;
+position: relative;
 ` 
 
 const VideoContainer = styled(motion.div)`
 width: 100%;
 height: 100%;
+background:url('video.mp4') ;
 video{
     width: 100%;
     height: 100%;
@@ -31,7 +33,7 @@ height: 100%;
 background: rgba(0,0,0,0.9);
 z-index: 1;
 `
-const ColumnContainer = styled.div`
+const ColumnContainer = styled(motion.div)`
 position: absolute;
 inset: 0;
 gap: 4rem;
@@ -116,9 +118,22 @@ p{
 
 
 const Main = ({Video,DataArray}) => {
- const ref = useRef(null)   
+  const {inView,ref} = useInView()
+  const animation = useAnimation()
+useEffect(()=>{
+if(inView) {
+    animation.start('visible')
+} else {
+    animation.start('hidden')
+}
+
+},[inView])
+
+
+
+ const refScroll = useRef(null)   
  const {scrollYProgress} = useScroll({
-    target : ref ,
+    target : refScroll ,
     offset : ['start start' , 'end start']
  }) 
 
@@ -127,12 +142,22 @@ const Main = ({Video,DataArray}) => {
   return (
 
 
-    <Container  ref={ref}>
-        <VideoContainer style={{y:width}}  >
+    <Container  ref={refScroll} >
+        <VideoContainer  style={{y:width}}  >
               <Opacity></Opacity>
-                <video src={Video.Video} type='video/mp4' autoPlay loop muted></video>
+                <video src={Video.Video} type='video/mp4' autoPlay loop muted />
         </VideoContainer>
-        <ColumnContainer  >
+        <ColumnContainer ref={ref} 
+        variants={{
+            hidden : {opacity : 0 , y : 300},
+            visible: {opacity : 1 , y : 0}
+            
+        }}
+        animate={animation}
+        transition={{
+            duration : 0.8
+        }}
+        >
             <LeftColumn >
                     <h2>{DataArray[0][0].title}</h2>                
             </LeftColumn>
@@ -140,9 +165,21 @@ const Main = ({Video,DataArray}) => {
                     <p>{DataArray[0][1].para}</p>
             </RightColumn>
         </ColumnContainer>
-        <SectionContainer>
-            <h3>{DataArray[1][0].title}</h3>
-            <p>{DataArray[1][1].para}</p>
+
+        <SectionContainer  variants={{
+                    hidden :{opacity : 0},
+                    visible:{opacity : 1}
+                    
+                }}
+                animate={animation}
+                transition={{
+                    duration : 2
+                }}>
+          
+                 <h3>{DataArray[1][0].title}</h3>
+                  <p>{DataArray[1][1].para}</p>
+        
+        
         </SectionContainer>
         
     </Container>

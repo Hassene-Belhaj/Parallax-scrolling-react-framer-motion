@@ -4,6 +4,7 @@ import Main from './Components/Main'
 import SectionOne from './Components/SectionOne'
 import SectionTwo from './Components/SectionTwo'
 import { DataArray, Video, Videotwo } from './Components/Data/Data'
+import Parralex from './Components/Parralex'
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
     <Main Video={Videotwo} DataArray={DataArray} />
    <SectionOne /> 
    <SectionOne bg='true' /> 
+   <Parralex />
   </Container>
 
     )
