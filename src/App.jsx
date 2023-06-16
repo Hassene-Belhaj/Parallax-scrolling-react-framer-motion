@@ -1,6 +1,9 @@
 import React from 'react'
 import { createGlobalStyle, styled } from 'styled-components'
 import Main from './Components/Main'
+import Section from './Components/Section'
+import SectionTwo from './Components/SectionTwo'
+
 
 
 const GlobalStyle = createGlobalStyle`
@@ -10,13 +13,14 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
 body{
   scroll-behavior: smooth;
 }
 `
 const Container = styled.div`
 width: 100%;
-height: 100vh;
+height: 100%;
 `
 
 
@@ -26,6 +30,7 @@ const App = () => {
   <Container>
     <GlobalStyle />
     <Main />
+   <Section /> 
   </Container>
 
     )
