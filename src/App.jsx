@@ -1,8 +1,9 @@
 import React from 'react'
 import { createGlobalStyle, styled } from 'styled-components'
 import Main from './Components/Main'
-import Section from './Components/Section'
+import SectionOne from './Components/SectionOne'
 import SectionTwo from './Components/SectionTwo'
+import { DataArray, Video, Videotwo } from './Components/Data/Data'
 
 
 
@@ -29,8 +30,10 @@ const App = () => {
   return (
   <Container>
     <GlobalStyle />
-    <Main />
-   <Section /> 
+    <Main Video={Video} DataArray={DataArray} />
+    <Main Video={Videotwo} DataArray={DataArray} />
+   <SectionOne /> 
+   <SectionOne bg='true' /> 
   </Container>
 
     )

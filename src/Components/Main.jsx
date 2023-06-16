@@ -11,6 +11,7 @@ height: 100vh;
 background: #000;
 position: relative;
 z-index: 0;
+margin-bottom: 100vh;
 ` 
 
 const VideoContainer = styled(motion.div)`
@@ -27,7 +28,7 @@ position: absolute;
 inset: 0;
 width: 100%;
 height: 100%;
-background: rgba(0,0,0,0.7);
+background: rgba(0,0,0,0.9);
 z-index: 1;
 `
 const ColumnContainer = styled.div`
@@ -57,14 +58,17 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+/* h2{
+    font-size:4rem;
+} */
 @media screen and (max-width : 768px){
     display: block;
-    padding-top: 5rem;
-    width: 100%;
+    margin: 2rem 2rem;
+    width: 90%;
     height: 50%;
-}
-h2{
-    font-size:4rem;
+    h2{
+        font-size:3rem;
+    }
 }
 `
 const RightColumn = styled.div`
@@ -75,9 +79,10 @@ justify-content: center;
 align-items: center;
 @media screen and (max-width : 768px){
     display: block;
-    padding-top: 5rem;
-    width: 100%;
-    height: 50%;
+    margin: 0 2rem;
+    /* padding-top: 5rem; */
+    width: 90%;
+    height: 100%;
 }
 `
 const SectionContainer = styled.div`
@@ -89,17 +94,28 @@ align-items: center;
 text-align: left;
 padding: 0 5rem;
 width: 100%;
-height: 100vh;
-/* background:rgba(255, 0, 0,0.1); */
+height: 100%;
+background:rgb(238, 130, 238,0.1);
 color: #fff;
 z-index: 10;
+h3{
+font-size    : 4rem;
+}
+p{
+    width: 50%;
+}
+@media screen and (max-width : 768px){
+p{
+    width: 100%;
+}    
+}
 `
 
 
 
 
 
-const Main = () => {
+const Main = ({Video,DataArray}) => {
  const ref = useRef(null)   
  const {scrollYProgress} = useScroll({
     target : ref ,
@@ -114,16 +130,20 @@ const Main = () => {
     <Container  ref={ref}>
         <VideoContainer style={{y:width}}  >
               <Opacity></Opacity>
-                <video src="video.mp4" type='video/mp4' autoPlay loop muted></video>
+                <video src={Video.Video} type='video/mp4' autoPlay loop muted></video>
         </VideoContainer>
         <ColumnContainer  >
             <LeftColumn >
-                    <h2>learn how to build modern user interfaces for the web</h2>                
+                    <h2>{DataArray[0][0].title}</h2>                
             </LeftColumn>
             <RightColumn>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, facilis! Explicabo ullam labore laborum tenetur provident ipsam molestias id veritatis earum quas impedit repellendus, delectus iste corrupti? Reiciendis iure obcaecati, rerum, non impedit ipsum expedita iusto aliquid officia quae ullam?</p>
+                    <p>{DataArray[0][1].para}</p>
             </RightColumn>
         </ColumnContainer>
+        <SectionContainer>
+            <h3>{DataArray[1][0].title}</h3>
+            <p>{DataArray[1][1].para}</p>
+        </SectionContainer>
         
     </Container>
 
