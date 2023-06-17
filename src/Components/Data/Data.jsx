@@ -22,3 +22,15 @@ export const Video = {
 export const Videotwo = {
     Video : '/video2.mp4'
 }
+
+export const Style  = {
+ color : false ,
+ bg : true ,
+ start : true ,
+}
+
+export const StyleTwo = {
+ color : true , 
+ bg : false ,
+ start : false ,
+}

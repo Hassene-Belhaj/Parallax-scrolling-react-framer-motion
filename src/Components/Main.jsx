@@ -12,6 +12,7 @@ width: 100%;
 height: 100vh;
 background: #000;
 z-index: 0;
+/* ----------------------------- */
 margin-bottom: 100vh;
 position: relative;
 ` 
@@ -19,7 +20,6 @@ position: relative;
 const VideoContainer = styled(motion.div)`
 width: 100%;
 height: 100%;
-background:url('video.mp4') ;
 video{
     width: 100%;
     height: 100%;
@@ -173,7 +173,7 @@ console.log(inView);
             </RightColumn>
         </ColumnContainer>
         
-{/* -------------- */}
+{/* -------------- ----------------------------------------*/}
 <ParallexSection /> 
         
     </Container>
