@@ -20,19 +20,18 @@ const Div = styled(motion.div)`
 width: 80%;
 height: 80%;
 display: flex;
+flex-direction:${({start})=>start ? 'row' : 'row-reverse'};
 justify-content: center;
 align-items: center;
 position: relative;
 p{
   padding: 0 1rem;
   min-width: 50%;
-  order:${({start})=>start ? 1 : 0};
 }
 img{
   min-width: 50%;
   min-height: 100%;
   object-fit: cover;
-
 }
 `
 const Opacity = styled.div`
@@ -60,7 +59,7 @@ useEffect(()=>{
 
   return (
   <Container color={color ? 1 : 0} bg={bg ? 1 : 0} ref={ref}>
-    <Div 
+    <Div  start={start ? 1: 0}
     variants={{
        hidden : {opacity : 0 , y : 300},
        visible: {opacity : 1 , y : 0}    
@@ -71,7 +70,7 @@ useEffect(()=>{
         delay : 0.2
       }}>
     <Opacity></Opacity>
-    <p  start={start ? 1: 0} >
+    <p  >
       Section Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eligendi debitis similique ut nisi nostrum? Optio, quod voluptatum iure temporibus atque dolorem possimus consequuntur nemo quidem accusamus maxime velit nam consectetur quis aut eveniet eligendi a fuga nulla magnam numquam pariatur quasi officiis molestias! Debitis dolores quisquam quae quibusdam. Eligendi?
     </p>
      <img src="/image2.jpg" alt="" />
