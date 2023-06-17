@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { styled } from 'styled-components'
 import { motion,useAnimation,useScroll,useTransform } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import ParallexSection from './ParallexSection'
 
 
 
@@ -87,7 +88,7 @@ align-items: center;
     height: 100%;
 }
 `
-const SectionContainer = styled.div`
+const SectionContainer = styled(motion.div)`
 position: absolute;
 display: flex;
 flex-direction: column;
@@ -105,6 +106,7 @@ font-size    : 4rem;
 }
 p{
     width: 50%;
+    height: 100%;
 }
 @media screen and (max-width : 768px){
 p{
@@ -118,7 +120,11 @@ p{
 
 
 const Main = ({Video,DataArray}) => {
-  const {inView,ref} = useInView()
+
+  const {inView,ref} = useInView({
+    // threshold: 0.01, 
+
+  })
   const animation = useAnimation()
 useEffect(()=>{
 if(inView) {
@@ -127,6 +133,7 @@ if(inView) {
     animation.start('hidden')
 }
 
+console.log(inView);
 },[inView])
 
 
@@ -137,17 +144,17 @@ if(inView) {
     offset : ['start start' , 'end start']
  }) 
 
- const width = useTransform(scrollYProgress , [0,1] , ['0%', '100%'])
+ const height = useTransform(scrollYProgress , [0,1] , ['0%', '100%'])
 
   return (
 
 
     <Container  ref={refScroll} >
-        <VideoContainer  style={{y:width}}  >
+        <VideoContainer  style={{y:height}}  >
               <Opacity></Opacity>
                 <video src={Video.Video} type='video/mp4' autoPlay loop muted />
         </VideoContainer>
-        <ColumnContainer ref={ref} 
+        <ColumnContainer ref={ref}
         variants={{
             hidden : {opacity : 0 , y : 300},
             visible: {opacity : 1 , y : 0}
@@ -165,22 +172,9 @@ if(inView) {
                     <p>{DataArray[0][1].para}</p>
             </RightColumn>
         </ColumnContainer>
-
-        <SectionContainer  variants={{
-                    hidden :{opacity : 0},
-                    visible:{opacity : 1}
-                    
-                }}
-                animate={animation}
-                transition={{
-                    duration : 2
-                }}>
-          
-                 <h3>{DataArray[1][0].title}</h3>
-                  <p>{DataArray[1][1].para}</p>
         
-        
-        </SectionContainer>
+{/* -------------- */}
+<ParallexSection /> 
         
     </Container>
 
