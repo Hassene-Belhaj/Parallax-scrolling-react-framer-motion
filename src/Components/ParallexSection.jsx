@@ -41,16 +41,17 @@ const ParallexSection = () => {
 
   return (
    
-<Container ref={ref}>   
+<Container >   
    
 
-       <motion.h3 variants={{
+       <motion.h3 ref={ref} variants={{
              hidden : {opacity : 0 , y : 300},
              visible: {opacity : 1 , y : 0}    
             }}
             animate={animation}
             transition={{
                 duration : 0.8 ,
+                
             }}>Lorem Ipsum lorem</motion.h3> 
       <motion.p 
          variants={{

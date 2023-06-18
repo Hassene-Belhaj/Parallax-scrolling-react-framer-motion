@@ -32,6 +32,7 @@ const App = () => {
       <GlobalStyle />
       <Main Video={Video} DataArray={DataArray} />
       <Main Video={Videotwo} DataArray={DataArray} />
+      <SectionOne {...Style} />
       <SectionOne {...StyleTwo} />
       {/* <SectionOne /> */}
   </Container>

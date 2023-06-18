@@ -27,10 +27,11 @@ export const Style  = {
  color : false ,
  bg : true ,
  start : true ,
+ image : '/image3.jpg'
 }
-
 export const StyleTwo = {
  color : true , 
  bg : false ,
  start : false ,
+ image : '/image1.jpg'
 }
